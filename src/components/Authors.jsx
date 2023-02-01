@@ -2,28 +2,28 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const Authors = () => {
-  const [name, setName] = useState([]);
-  const [quote, setQuote] = useState([]);
-  const [id, setId] = useState([]);
+  const [author, setAuthor] = useState([]);
+  /* const [quote, setQuote] = useState([]);
+  const [id, setId] = useState([]); */
 
   useEffect(() => {
     const getAuthor = async () => {
       try {
         const result = await axios.get("http://localhost:8000/api/authors/"); //se pone el id del useparams aca para hacer fetch de esa id
-        console.log(result);
-        /*         setName(result.data.product.map((prod) => prod.title));
-        setQuote(result.data.product.map((prod) => prod.price)); */
+        /*         console.log(result.data.autor); */
+        setAuthor(result.data.autor.map((prod) => prod));
+        /* setQuote(result.data.product.map((prod) => prod.price)); */
       } catch (error) {
         console.log(error);
       }
     };
     getAuthor();
   }, []);
-
-  const deleteAuthor = async () => {
+  console.log(author);
+  const deleteAuthor = async (id) => {
     try {
       const result = await axios
-        .delete(`http://localhost:8000/api/products/${id}`) //se pone el id del useparams aca para hacer fetch de esa id
+        .delete(`http://localhost:8000/api/author/delete/${id}`) //se pone el id del useparams aca para hacer fetch de esa id
         .then((res) => {});
     } catch (error) {
       console.log(error);
@@ -36,35 +36,19 @@ const Authors = () => {
       <p>{<a href={`/add`}>Add an author</a>}</p>
       <p>We have quotes by:</p>
       <div className="tableAuth">
-        {/*  <table>
-          <tr>
-            <th>Author</th>
-            <th>Actions available</th>
-          </tr>
-          <tr>
-            <td>Bill</td>
-            <td>Frank</td>
-          </tr>
-          <tr>
-            <button>
-              <a href={`/edit/:id`}>Edit</a>
-            </button>
-            <button>
-              <a href={`/edit/:id`}>Delete</a>
-            </button>
-          </tr>
-        </table> */}
-        <label htmlFor="">Author</label>
-        <label htmlFor="">Actions Available</label>
         <div>
-          <p>{name}</p>
-          <button>
-            <a href={`/edit/:id`}>Edit</a>
-          </button>
-          <button>
-            <a href={`/edit/:id`}>Delete</a>
-          </button>
+          <label htmlFor="">Author</label>
+          <label htmlFor="">Actions Available</label>
         </div>
+        {author.map((prod) => (
+          <>
+            <p>{prod.name}</p>
+            <button>
+              <a href={`/edit/${prod._id}`}>Edit</a>
+            </button>
+            <button onClick={() => deleteAuthor(prod._id)}>Delete</button>
+          </>
+        ))}
       </div>
     </div>
   );
