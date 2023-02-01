@@ -35,18 +35,20 @@ const Authors = () => {
       <h1>Favorite authors</h1>
       <p>{<a href={`/new`}>Add an author</a>}</p>
       <p>We have quotes by:</p>
+      <div className="autores">
+        <label htmlFor="">Author</label>
+        <label htmlFor="">Actions Available</label>
+      </div>
       <div className="tableAuth">
-        <div>
-          <label htmlFor="">Author</label>
-          <label htmlFor="">Actions Available</label>
-        </div>
         {author.map((prod) => (
           <>
-            <p>{prod.name}</p>
-            <button>
-              <a href={`/edit/${prod._id}`}>Edit</a>
-            </button>
-            <button onClick={() => deleteAuthor(prod._id)}>Delete</button>
+            <div className="datos">
+              <p>{prod.name}</p>
+              <button>
+                <a href={`/edit/${prod._id}`}>Edit</a>
+              </button>
+              <button onClick={() => deleteAuthor(prod._id)}>Delete</button>
+            </div>
           </>
         ))}
       </div>

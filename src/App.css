@@ -5,14 +5,18 @@
 .tableAuth {
   justify-content: center;
   text-align: center;
-  display: flex;
 }
 
 table {
   border: 2px solid black;
 }
 
-.products {
+.datos {
+  display: flex;
+  justify-content: center;
+}
+
+.autores {
   display: flex;
   justify-content: center;
 }
