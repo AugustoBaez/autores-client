@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const EditAuthor = () => {
+const AddAuthor = () => {
   const [name, setName] = useState("");
   return (
     <div>
@@ -19,4 +19,4 @@ const EditAuthor = () => {
   );
 };
 
-export default EditAuthor;
+export default AddAuthor;

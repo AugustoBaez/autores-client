@@ -33,7 +33,7 @@ const Authors = () => {
   return (
     <div className="container">
       <h1>Favorite authors</h1>
-      <p>{<a href={`/add`}>Add an author</a>}</p>
+      <p>{<a href={`/new`}>Add an author</a>}</p>
       <p>We have quotes by:</p>
       <div className="tableAuth">
         <div>
